@@ -5,6 +5,7 @@ module.exports = {
 	create,
 	show,
 	delete: deleteOne,
+	update,
 };
 
 function index(req, res) {
@@ -29,4 +30,12 @@ function deleteOne(req, res) {
 	Weapon.findByIdAndDelete(req.params.id).then((weapon) => {
 		res.status(200).json(weapon);
 	});
+}
+
+function update(req, res) {
+	Weapon.findByIdAndUpdate(req.params.id, req.body, { new: true }).then(
+		(weapon) => {
+			res.status(200).json(weapon);
+		}
+	);
 }
